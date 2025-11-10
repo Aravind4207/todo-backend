@@ -1,5 +1,10 @@
+
+
+
+ 
 //express  
 const express = require('express');
+require("dotenv").config();
 const mongoose = require ('mongoose'); 
 const cors = require('cors');
 
@@ -12,7 +17,8 @@ app.use(cors());
 //let todos = [];
 
  //connect to mongoose
- mongoose.connect('mongodb://localhost:27017/todo-app')
+//  mongoose.connect('mongodb://localhost:27017/todo-app')
+mongoose.connect(process.env.MONGODB_URI )
     .then(() => {
         console.log('connected to mongodb');
     })
