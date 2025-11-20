@@ -21,6 +21,8 @@ app.use(cors());
 mongoose.connect(process.env.MONGODB_URI )
     .then(() => {
         console.log('connected to mongodb');
+        console.log("Using URI:", process.env.MONGODB_URI);
+
     })
     .catch((error) => {
         console.error('error connecting to mongodb:', error);
@@ -41,6 +43,11 @@ const todoSchema = new mongoose.Schema({
 //create a mongoose model
 const todoModel = mongoose.model('todo' , todoSchema);
 
+
+
+app.get('/', (req , res ) => {
+    res.send('welcome to todo api');
+});
 //create a new todo item
 app.post('/todos',async (req ,res )=>{
     const {title , description} =req.body; 
